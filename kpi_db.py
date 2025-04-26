@@ -5,8 +5,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # preparing data for database
-df1 = pd.read_excel('excel/delivery.xlsx', header=0)
-df2 = pd.read_excel('excel/final2.xlsx', header=0)
+df1 = pd.read_excel('~/Library/Mobile Documents/com~apple~CloudDocs/git_hub/md_pm_project/excel/delivery.xlsx', header=0)
+df2 = pd.read_excel('~/Library/Mobile Documents/com~apple~CloudDocs/git_hub/md_pm_project/excel/final2.xlsx', header=0)
 
 delivery_df = df1[['VIN', 'Дата сканирования ТС в очереди']]
 delivery_df = delivery_df.rename(columns={'VIN':'delivery_vin', 'Дата сканирования ТС в очереди':'delivery_date'})
@@ -14,8 +14,8 @@ delivery_df = delivery_df.rename(columns={'VIN':'delivery_vin', 'Дата ска
 final2_df = df2[['VIN', 'Дата сканирования ТС в очереди']]
 final2_df = final2_df.rename(columns={'VIN':'final2_vin', 'Дата сканирования ТС в очереди':'final2_date'})
 
-delivery_df.to_csv('database/delivery.csv', encoding='utf-8', index=True, sep=',')
-final2_df.to_csv('database/final2.csv', encoding='utf-8', index=True, sep=',')
+delivery_df.to_csv('~/Library/Mobile Documents/com~apple~CloudDocs/git_hub/md_pm_project/database/delivery.csv', encoding='utf-8', index=True, sep=',')
+final2_df.to_csv('~/Library/Mobile Documents/com~apple~CloudDocs/git_hub/md_pm_project/database/final2.csv', encoding='utf-8', index=True, sep=',')
 
 # connection establishment
 cnx = mysql.connector.connect(user=input('User:'),
@@ -31,7 +31,7 @@ create database if not exists md_pm_database character set utf8;
 '''
 
 # use md_pm_database
-use_md_pm_database  = '''
+use_database  = '''
 use md_pm_database
 '''
 
@@ -96,7 +96,7 @@ where t.final2_date > '2025-04-23 08:30:00'
 
 # execution sql scripts
 cursor.execute(create_database)
-cursor.execute(use_md_pm_database)
+cursor.execute(use_database)
 cursor.execute(create_table_delivery)
 cursor.execute(create_table_final2)
 cursor.execute(delivery_data)
