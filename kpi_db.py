@@ -115,5 +115,6 @@ print(f'\
 cnx.commit()
 
 # cursor and connection close
-cursor.close()
-cnx.close()
+if cnx.is_connected():
+      cursor.close()
+      cnx.close()
